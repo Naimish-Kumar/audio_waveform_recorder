@@ -1,0 +1,36 @@
+name: audio_waveform_recorder
+description: >
+  Record audio with a real-time animated waveform visualiser.
+  Playback with waveform scrubbing. Export to M4A/AAC/WAV/MP4.
+  Zero heavy dependencies - pure Dart UI + native platform channels.
+version: 0.1.0
+homepage: https://github.com/yourusername/audio_waveform_recorder
+repository: https://github.com/yourusername/audio_waveform_recorder
+issue_tracker: https://github.com/yourusername/audio_waveform_recorder/issues
+topics:
+  - audio
+  - recorder
+  - waveform
+  - player
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+  flutter: '>=3.10.0'
+
+flutter:
+  plugin:
+    platforms:
+      android:
+        package: com.example.audio_waveform_recorder
+        pluginClass: AudioWaveformPlugin
+      ios:
+        pluginClass: AudioWaveformPlugin
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
