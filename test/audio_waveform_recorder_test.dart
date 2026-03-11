@@ -2,7 +2,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:audio_waveform_recorder/audio_waveform_recorder.dart';
 
 void main() {
-
   // ── WaveformData ─────────────────────────────────────────────────────────
   group('WaveformData', () {
     test('empty returns correct defaults', () {
@@ -15,7 +14,7 @@ void main() {
     test('withSample appends and clamps', () {
       final w = WaveformData.empty()
           .withSample(0.5)
-          .withSample(1.5)   // should clamp to 1.0
+          .withSample(1.5) // should clamp to 1.0
           .withSample(-0.1); // should clamp to 0.0
       expect(w.samples.length, 3);
       expect(w.samples[0], 0.5);
@@ -35,7 +34,7 @@ void main() {
     test('resample pads with zeros when fewer samples than count', () {
       const w = WaveformData(
         samples: [0.1, 0.2, 0.3],
-        duration: const Duration(milliseconds: 100),
+        duration: Duration(milliseconds: 100),
       );
       final resampled = w.resample(10);
       expect(resampled.length, 10);
@@ -46,7 +45,7 @@ void main() {
     test('peak returns max amplitude', () {
       const w = WaveformData(
         samples: [0.1, 0.9, 0.4, 0.6],
-        duration: const Duration(seconds: 1),
+        duration: Duration(seconds: 1),
       );
       expect(w.peak, closeTo(0.9, 0.001));
     });
@@ -55,14 +54,14 @@ void main() {
       // All 1.0 → RMS = 1.0
       const full = WaveformData(
         samples: [1.0, 1.0, 1.0],
-        duration: const Duration(seconds: 1),
+        duration: Duration(seconds: 1),
       );
       expect(full.rms, closeTo(1.0, 0.001));
 
       // All 0.0 → RMS = 0.0
       const empty = WaveformData(
         samples: [0.0, 0.0, 0.0],
-        duration: const Duration(seconds: 1),
+        duration: Duration(seconds: 1),
       );
       expect(empty.rms, closeTo(0.0, 0.001));
     });
@@ -70,7 +69,7 @@ void main() {
     test('toBytes and fromBytes round-trip', () {
       const original = WaveformData(
         samples: [0.1, 0.5, 0.9, 0.3, 0.7],
-        duration: const Duration(seconds: 5),
+        duration: Duration(seconds: 5),
       );
       final bytes = original.toBytes();
       final restored = WaveformData.fromBytes(bytes, original.duration);
@@ -88,12 +87,14 @@ void main() {
     });
 
     test('formats minutes and seconds', () {
-      expect(DurationFormatter.format(const Duration(minutes: 3, seconds: 7)), '03:07');
+      expect(DurationFormatter.format(const Duration(minutes: 3, seconds: 7)),
+          '03:07');
     });
 
     test('formats hours when >= 1 hour', () {
       expect(
-        DurationFormatter.format(const Duration(hours: 1, minutes: 5, seconds: 9)),
+        DurationFormatter.format(
+            const Duration(hours: 1, minutes: 5, seconds: 9)),
         '1:05:09',
       );
     });

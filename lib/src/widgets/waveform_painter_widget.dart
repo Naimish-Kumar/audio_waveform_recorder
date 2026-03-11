@@ -32,9 +32,9 @@ class WaveformPainterWidget extends StatelessWidget {
     this.config = const RecorderConfig(),
     this.playbackProgress = 0.0,
     this.isRecording = false,
-    this.isPlaying   = false,
+    this.isPlaying = false,
     this.currentAmplitude = 0.0,
-    this.style  = WaveformStyle.bars,
+    this.style = WaveformStyle.bars,
     this.height = 64.0,
     this.onTap,
     this.onDragUpdate,
@@ -45,13 +45,13 @@ class WaveformPainterWidget extends StatelessWidget {
     Widget painter = CustomPaint(
       size: Size.fromHeight(height),
       painter: WaveformPainter(
-        waveform:          waveform,
-        config:            config,
-        playbackProgress:  playbackProgress,
-        isRecording:       isRecording,
-        isPlaying:         isPlaying,
-        currentAmplitude:  currentAmplitude,
-        style:             style,
+        waveform: waveform,
+        config: config,
+        playbackProgress: playbackProgress,
+        isRecording: isRecording,
+        isPlaying: isPlaying,
+        currentAmplitude: currentAmplitude,
+        style: style,
       ),
     );
 

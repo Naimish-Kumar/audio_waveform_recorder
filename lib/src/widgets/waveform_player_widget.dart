@@ -31,11 +31,11 @@ class WaveformPlayerWidget extends StatefulWidget {
     super.key,
     required this.filePath,
     this.waveform,
-    this.config          = const RecorderConfig(),
-    this.style           = WaveformStyle.bars,
-    this.waveformHeight  = 80.0,
-    this.showControls    = true,
-    this.showTimer       = true,
+    this.config = const RecorderConfig(),
+    this.style = WaveformStyle.bars,
+    this.waveformHeight = 80.0,
+    this.showControls = true,
+    this.showTimer = true,
     this.showSpeedControl = true,
     this.onStateChanged,
     this.onPositionChanged,
@@ -63,7 +63,11 @@ class _WaveformPlayerWidgetState extends State<WaveformPlayerWidget> {
       await _player.load(widget.filePath, waveform: widget.waveform);
       if (mounted) setState(() => _loading = false);
     } catch (e) {
-      if (mounted) setState(() { _loading = false; _error = e.toString(); });
+      if (mounted)
+        setState(() {
+          _loading = false;
+          _error = e.toString();
+        });
     }
   }
 
@@ -102,7 +106,8 @@ class _WaveformPlayerWidgetState extends State<WaveformPlayerWidget> {
           color: widget.config.backgroundColor,
           borderRadius: BorderRadius.circular(16),
         ),
-        child: Text('Error: $_error', style: const TextStyle(color: Colors.red)),
+        child:
+            Text('Error: $_error', style: const TextStyle(color: Colors.red)),
       );
     }
 
@@ -117,12 +122,12 @@ class _WaveformPlayerWidgetState extends State<WaveformPlayerWidget> {
         children: [
           // Waveform with scrubbing
           WaveformPainterWidget(
-            waveform:          _player.waveform,
-            config:            widget.config,
-            playbackProgress:  _player.progress,
-            isPlaying:         _player.isPlaying,
-            style:             widget.style,
-            height:            widget.waveformHeight,
+            waveform: _player.waveform,
+            config: widget.config,
+            playbackProgress: _player.progress,
+            isPlaying: _player.isPlaying,
+            style: widget.style,
+            height: widget.waveformHeight,
             onTap: (fraction) => _player.seekToFraction(fraction),
             onDragUpdate: (fraction) => _player.seekToFraction(fraction),
           ),
@@ -251,7 +256,8 @@ class _SpeedButton extends StatelessWidget {
         ),
         child: Text(
           label,
-          style: TextStyle(color: color, fontWeight: FontWeight.bold, fontSize: 13),
+          style: TextStyle(
+              color: color, fontWeight: FontWeight.bold, fontSize: 13),
         ),
       ),
     );

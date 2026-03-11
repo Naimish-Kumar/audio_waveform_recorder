@@ -34,8 +34,7 @@ class RecordingResult {
   });
 
   @override
-  String toString() =>
-      'RecordingResult(path: $filePath, duration: $duration, '
+  String toString() => 'RecordingResult(path: $filePath, duration: $duration, '
       'samples: ${waveform.length}, size: $fileSizeBytes bytes)';
 }
 
@@ -63,7 +62,6 @@ class RecorderController extends ChangeNotifier {
   Timer? _durationTimer;
   Timer? _silenceTimer;
   final Stopwatch _stopwatch = Stopwatch();
-  DateTime? _startTime;
 
   RecorderController({RecorderConfig config = const RecorderConfig()})
       : _config = config;
@@ -71,16 +69,16 @@ class RecorderController extends ChangeNotifier {
   // ── Public getters ────────────────────────────────────────────────────
 
   RecorderConfig get config => _config;
-  RecordingState get state  => _state;
-  WaveformData   get waveform => _waveform;
-  Duration       get elapsed  => _elapsed;
-  double         get currentAmplitude => _currentAmplitude;
-  String?        get error => _error;
+  RecordingState get state => _state;
+  WaveformData get waveform => _waveform;
+  Duration get elapsed => _elapsed;
+  double get currentAmplitude => _currentAmplitude;
+  String? get error => _error;
 
-  bool get isIdle      => _state == RecordingState.idle;
+  bool get isIdle => _state == RecordingState.idle;
   bool get isRecording => _state == RecordingState.recording;
-  bool get isPaused    => _state == RecordingState.paused;
-  bool get isStopped   => _state == RecordingState.stopped;
+  bool get isPaused => _state == RecordingState.paused;
+  bool get isStopped => _state == RecordingState.stopped;
 
   /// Update config (only when not recording).
   void updateConfig(RecorderConfig config) {
@@ -113,19 +111,18 @@ class RecorderController extends ChangeNotifier {
     _currentAmplitude = 0.0;
 
     try {
-      final path = await AudioChannel.startRecording(
-        format:     _config.format.extension,
+      await AudioChannel.startRecording(
+        format: _config.format.extension,
         sampleRate: _config.sampleRate.value,
-        bitRate:    _config.bitRate.value,
-        channels:   _config.channels,
-        outputDir:  _config.outputDirectory,
-        fileName:   _config.fileName,
+        bitRate: _config.bitRate.value,
+        channels: _config.channels,
+        outputDir: _config.outputDirectory,
+        fileName: _config.fileName,
       );
 
       _state = RecordingState.recording;
       _stopwatch.reset();
       _stopwatch.start();
-      _startTime = DateTime.now();
 
       _startAmplitudePolling();
       _startDurationTimer();
@@ -176,9 +173,9 @@ class RecorderController extends ChangeNotifier {
       _state = RecordingState.stopped;
 
       final recording = RecordingResult(
-        filePath:      result['path'] as String,
-        duration:      Duration(milliseconds: result['durationMs'] as int),
-        waveform:      _waveform.withDuration(_elapsed),
+        filePath: result['path'] as String,
+        duration: Duration(milliseconds: result['durationMs'] as int),
+        waveform: _waveform.withDuration(_elapsed),
         fileSizeBytes: result['sizeBytes'] as int,
       );
 

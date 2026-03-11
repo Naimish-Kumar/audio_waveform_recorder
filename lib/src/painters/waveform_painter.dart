@@ -110,23 +110,23 @@ class WaveformStyleConfig {
   final double mirrorReflectionOpacity;
 
   const WaveformStyleConfig({
-    this.useGradient             = false,
-    this.gradientColors          = const [Color(0xFFE53935), Color(0xFFFF7043)],
-    this.idleGradientColors      = const [Color(0xFF607D8B), Color(0xFF455A64)],
-    this.glowRadius              = 8.0,
-    this.glowLayers              = 2,
-    this.radialInnerFraction     = 0.25,
-    this.radialRoundedTips       = true,
-    this.waveLayerCount          = 3,
-    this.waveLayerOffset         = 0.08,
-    this.dotRows                 = 8,
-    this.dotFilled               = true,
-    this.pixelRows               = 10,
-    this.pixelGap                = 1.5,
-    this.equalizerShowPeak       = true,
-    this.equalizerPeakDecay      = 0.92,
-    this.showPlayhead            = true,
-    this.playheadStyle           = PlayheadStyle.line,
+    this.useGradient = false,
+    this.gradientColors = const [Color(0xFFE53935), Color(0xFFFF7043)],
+    this.idleGradientColors = const [Color(0xFF607D8B), Color(0xFF455A64)],
+    this.glowRadius = 8.0,
+    this.glowLayers = 2,
+    this.radialInnerFraction = 0.25,
+    this.radialRoundedTips = true,
+    this.waveLayerCount = 3,
+    this.waveLayerOffset = 0.08,
+    this.dotRows = 8,
+    this.dotFilled = true,
+    this.pixelRows = 10,
+    this.pixelGap = 1.5,
+    this.equalizerShowPeak = true,
+    this.equalizerPeakDecay = 0.92,
+    this.showPlayhead = true,
+    this.playheadStyle = PlayheadStyle.line,
     this.mirrorReflectionOpacity = 0.45,
   });
 
@@ -151,24 +151,25 @@ class WaveformStyleConfig {
     double? mirrorReflectionOpacity,
   }) =>
       WaveformStyleConfig(
-        useGradient:             useGradient             ?? this.useGradient,
-        gradientColors:          gradientColors          ?? this.gradientColors,
-        idleGradientColors:      idleGradientColors      ?? this.idleGradientColors,
-        glowRadius:              glowRadius              ?? this.glowRadius,
-        glowLayers:              glowLayers              ?? this.glowLayers,
-        radialInnerFraction:     radialInnerFraction     ?? this.radialInnerFraction,
-        radialRoundedTips:       radialRoundedTips       ?? this.radialRoundedTips,
-        waveLayerCount:          waveLayerCount          ?? this.waveLayerCount,
-        waveLayerOffset:         waveLayerOffset         ?? this.waveLayerOffset,
-        dotRows:                 dotRows                 ?? this.dotRows,
-        dotFilled:               dotFilled               ?? this.dotFilled,
-        pixelRows:               pixelRows               ?? this.pixelRows,
-        pixelGap:                pixelGap                ?? this.pixelGap,
-        equalizerShowPeak:       equalizerShowPeak       ?? this.equalizerShowPeak,
-        equalizerPeakDecay:      equalizerPeakDecay      ?? this.equalizerPeakDecay,
-        showPlayhead:            showPlayhead            ?? this.showPlayhead,
-        playheadStyle:           playheadStyle           ?? this.playheadStyle,
-        mirrorReflectionOpacity: mirrorReflectionOpacity ?? this.mirrorReflectionOpacity,
+        useGradient: useGradient ?? this.useGradient,
+        gradientColors: gradientColors ?? this.gradientColors,
+        idleGradientColors: idleGradientColors ?? this.idleGradientColors,
+        glowRadius: glowRadius ?? this.glowRadius,
+        glowLayers: glowLayers ?? this.glowLayers,
+        radialInnerFraction: radialInnerFraction ?? this.radialInnerFraction,
+        radialRoundedTips: radialRoundedTips ?? this.radialRoundedTips,
+        waveLayerCount: waveLayerCount ?? this.waveLayerCount,
+        waveLayerOffset: waveLayerOffset ?? this.waveLayerOffset,
+        dotRows: dotRows ?? this.dotRows,
+        dotFilled: dotFilled ?? this.dotFilled,
+        pixelRows: pixelRows ?? this.pixelRows,
+        pixelGap: pixelGap ?? this.pixelGap,
+        equalizerShowPeak: equalizerShowPeak ?? this.equalizerShowPeak,
+        equalizerPeakDecay: equalizerPeakDecay ?? this.equalizerPeakDecay,
+        showPlayhead: showPlayhead ?? this.showPlayhead,
+        playheadStyle: playheadStyle ?? this.playheadStyle,
+        mirrorReflectionOpacity:
+            mirrorReflectionOpacity ?? this.mirrorReflectionOpacity,
       );
 }
 
@@ -204,12 +205,12 @@ class WaveformPainter extends CustomPainter {
   WaveformPainter({
     required this.waveform,
     required this.config,
-    this.styleConfig      = const WaveformStyleConfig(),
+    this.styleConfig = const WaveformStyleConfig(),
     this.playbackProgress = 0.0,
-    this.isRecording      = false,
-    this.isPlaying        = false,
+    this.isRecording = false,
+    this.isPlaying = false,
     this.currentAmplitude = 0.0,
-    this.style            = WaveformStyle.bars,
+    this.style = WaveformStyle.bars,
     List<double>? peaks,
   }) : _peaks = peaks ?? [];
 
@@ -219,16 +220,26 @@ class WaveformPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     if (size.width <= 0 || size.height <= 0) return;
     switch (style) {
-      case WaveformStyle.bars:      _drawBars(canvas, size);
-      case WaveformStyle.mirror:    _drawMirror(canvas, size);
-      case WaveformStyle.line:      _drawLine(canvas, size);
-      case WaveformStyle.equalizer: _drawEqualizer(canvas, size);
-      case WaveformStyle.radial:    _drawRadial(canvas, size);
-      case WaveformStyle.wave:      _drawWave(canvas, size);
-      case WaveformStyle.dots:      _drawDots(canvas, size);
-      case WaveformStyle.neon:      _drawNeon(canvas, size);
-      case WaveformStyle.stacked:   _drawStacked(canvas, size);
-      case WaveformStyle.pixel:     _drawPixel(canvas, size);
+      case WaveformStyle.bars:
+        _drawBars(canvas, size);
+      case WaveformStyle.mirror:
+        _drawMirror(canvas, size);
+      case WaveformStyle.line:
+        _drawLine(canvas, size);
+      case WaveformStyle.equalizer:
+        _drawEqualizer(canvas, size);
+      case WaveformStyle.radial:
+        _drawRadial(canvas, size);
+      case WaveformStyle.wave:
+        _drawWave(canvas, size);
+      case WaveformStyle.dots:
+        _drawDots(canvas, size);
+      case WaveformStyle.neon:
+        _drawNeon(canvas, size);
+      case WaveformStyle.stacked:
+        _drawStacked(canvas, size);
+      case WaveformStyle.pixel:
+        _drawPixel(canvas, size);
     }
   }
 
@@ -237,29 +248,32 @@ class WaveformPainter extends CustomPainter {
   // ─────────────────────────────────────────────────────────────────────────
 
   void _drawBars(Canvas canvas, Size size) {
-    final stride  = config.barWidth + config.barGap;
+    final stride = config.barWidth + config.barGap;
     final maxBars = (size.width / stride).floor();
-    final minH    = size.height * config.minBarHeightFraction;
+    final minH = size.height * config.minBarHeightFraction;
     final centerY = size.height / 2;
     final samples = waveform.resample(maxBars);
 
     for (int i = 0; i < maxBars; i++) {
-      final amp  = i < samples.length ? samples[i] : 0.0;
+      final amp = i < samples.length ? samples[i] : 0.0;
       final barH = (minH + amp * (size.height - minH)).clamp(minH, size.height);
-      final x    = i * stride;
+      final x = i * stride;
       final paint = _barPaint(i, maxBars, amp);
 
       canvas.drawRRect(
         RRect.fromRectAndRadius(
-          Rect.fromCenter(center: Offset(x + config.barWidth / 2, centerY),
-              width: config.barWidth, height: barH),
+          Rect.fromCenter(
+              center: Offset(x + config.barWidth / 2, centerY),
+              width: config.barWidth,
+              height: barH),
           Radius.circular(config.barBorderRadius),
         ),
         paint,
       );
     }
 
-    if (isRecording) _drawLiveBar(canvas, size, maxBars * stride, minH, size.height);
+    if (isRecording)
+      _drawLiveBar(canvas, size, maxBars * stride, minH, size.height);
     if (styleConfig.showPlayhead && (isPlaying || playbackProgress > 0)) {
       _drawPlayhead(canvas, size, playbackProgress * size.width);
     }
@@ -270,22 +284,23 @@ class WaveformPainter extends CustomPainter {
   // ─────────────────────────────────────────────────────────────────────────
 
   void _drawMirror(Canvas canvas, Size size) {
-    final stride  = config.barWidth + config.barGap;
+    final stride = config.barWidth + config.barGap;
     final maxBars = (size.width / stride).floor();
-    final halfH   = size.height / 2;
-    final minH    = halfH * config.minBarHeightFraction;
+    final halfH = size.height / 2;
+    final minH = halfH * config.minBarHeightFraction;
     final samples = waveform.resample(maxBars);
 
     for (int i = 0; i < maxBars; i++) {
-      final amp  = i < samples.length ? samples[i] : 0.0;
+      final amp = i < samples.length ? samples[i] : 0.0;
       final barH = (minH + amp * (halfH - minH)).clamp(minH, halfH);
-      final cx   = i * stride + config.barWidth / 2;
+      final cx = i * stride + config.barWidth / 2;
       final basePaint = _barPaint(i, maxBars, amp);
 
       // Top bar
       canvas.drawRRect(
         RRect.fromRectAndRadius(
-          Rect.fromLTWH(cx - config.barWidth / 2, halfH - barH, config.barWidth, barH),
+          Rect.fromLTWH(
+              cx - config.barWidth / 2, halfH - barH, config.barWidth, barH),
           Radius.circular(config.barBorderRadius),
         ),
         basePaint,
@@ -297,7 +312,8 @@ class WaveformPainter extends CustomPainter {
           Radius.circular(config.barBorderRadius),
         ),
         Paint()
-          ..color = basePaint.color.withOpacity(styleConfig.mirrorReflectionOpacity)
+          ..color =
+              basePaint.color.withOpacity(styleConfig.mirrorReflectionOpacity)
           ..shader = basePaint.shader,
       );
     }
@@ -315,19 +331,23 @@ class WaveformPainter extends CustomPainter {
     if (waveform.isEmpty) return;
     final samples = waveform.resample(size.width.toInt());
     final centerY = size.height / 2;
-    final path    = _buildLinePath(samples, size, centerY);
+    final path = _buildLinePath(samples, size, centerY);
 
     _paintSplitPath(canvas, size, path,
         playedPaint: Paint()
           ..color = config.playedColor.withOpacity(0.75)
           ..shader = styleConfig.useGradient
-              ? _vertGradient(styleConfig.gradientColors, size, opacity: 0.75) : null,
+              ? _vertGradient(styleConfig.gradientColors, size, opacity: 0.75)
+              : null,
         idlePaint: Paint()
           ..color = config.idleColor.withOpacity(0.45)
           ..shader = styleConfig.useGradient
-              ? _vertGradient(styleConfig.idleGradientColors, size, opacity: 0.45) : null);
+              ? _vertGradient(styleConfig.idleGradientColors, size,
+                  opacity: 0.45)
+              : null);
 
-    canvas.drawPath(path,
+    canvas.drawPath(
+        path,
         Paint()
           ..color = isRecording ? config.recordingColor : config.idleColor
           ..style = PaintingStyle.stroke
@@ -364,10 +384,10 @@ class WaveformPainter extends CustomPainter {
   // ─────────────────────────────────────────────────────────────────────────
 
   void _drawEqualizer(Canvas canvas, Size size) {
-    final stride  = config.barWidth + config.barGap;
+    final stride = config.barWidth + config.barGap;
     final maxBars = (size.width / stride).floor();
     final samples = waveform.resample(maxBars);
-    final minH    = size.height * config.minBarHeightFraction;
+    final minH = size.height * config.minBarHeightFraction;
 
     // Grow peaks list if needed
     while (_peaks.length < maxBars) {
@@ -375,9 +395,10 @@ class WaveformPainter extends CustomPainter {
     }
 
     for (int i = 0; i < maxBars; i++) {
-      final amp  = i < samples.length ? samples[i] : 0.0;
-      final barH = (minH + amp * (size.height * 0.9 - minH)).clamp(minH, size.height * 0.9);
-      final x    = i * stride;
+      final amp = i < samples.length ? samples[i] : 0.0;
+      final barH = (minH + amp * (size.height * 0.9 - minH))
+          .clamp(minH, size.height * 0.9);
+      final x = i * stride;
 
       // Update peak with decay
       if (amp > _peaks[i]) {
@@ -392,7 +413,7 @@ class WaveformPainter extends CustomPainter {
         barPaint = Paint()
           ..shader = const LinearGradient(
             begin: Alignment.bottomCenter,
-            end:   Alignment.topCenter,
+            end: Alignment.topCenter,
             colors: [
               Color(0xFF43A047),
               Color(0xFFFDD835),
@@ -414,7 +435,8 @@ class WaveformPainter extends CustomPainter {
 
       // Peak dot
       if (styleConfig.equalizerShowPeak && _peaks[i] > 0.02) {
-        final peakH = (minH + _peaks[i] * (size.height * 0.9 - minH)).clamp(minH, size.height);
+        final peakH = (minH + _peaks[i] * (size.height * 0.9 - minH))
+            .clamp(minH, size.height);
         final peakY = size.height - peakH - 3;
         canvas.drawRRect(
           RRect.fromRectAndRadius(
@@ -436,28 +458,29 @@ class WaveformPainter extends CustomPainter {
   // ─────────────────────────────────────────────────────────────────────────
 
   void _drawRadial(Canvas canvas, Size size) {
-    final center    = Offset(size.width / 2, size.height / 2);
+    final center = Offset(size.width / 2, size.height / 2);
     final maxRadius = min(size.width, size.height) / 2;
-    final innerR    = maxRadius * styleConfig.radialInnerFraction;
-    const maxBars   = 120;
-    final samples   = waveform.resample(maxBars);
-    final angleStep = (2 * pi) / maxBars;
+    final innerR = maxRadius * styleConfig.radialInnerFraction;
+    const maxBars = 120;
+    final samples = waveform.resample(maxBars);
+    const angleStep = (2 * pi) / maxBars;
 
     for (int i = 0; i < maxBars; i++) {
-      final amp    = i < samples.length ? samples[i] : 0.0;
-      final barLen = (amp * (maxRadius - innerR)).clamp(2.0, maxRadius - innerR);
-      final angle  = i * angleStep - pi / 2; // start at top
+      final amp = i < samples.length ? samples[i] : 0.0;
+      final barLen =
+          (amp * (maxRadius - innerR)).clamp(2.0, maxRadius - innerR);
+      final angle = i * angleStep - pi / 2; // start at top
 
       final startX = center.dx + innerR * cos(angle);
       final startY = center.dy + innerR * sin(angle);
-      final endX   = center.dx + (innerR + barLen) * cos(angle);
-      final endY   = center.dy + (innerR + barLen) * sin(angle);
+      final endX = center.dx + (innerR + barLen) * cos(angle);
+      final endY = center.dy + (innerR + barLen) * sin(angle);
 
       final fraction = i / maxBars;
       Color c;
       if (isRecording) {
-        c = Color.lerp(config.recordingColor, config.recordingColor.withOpacity(0.4),
-            amp < 0.1 ? 0.8 : 0.0)!;
+        c = Color.lerp(config.recordingColor,
+            config.recordingColor.withOpacity(0.4), amp < 0.1 ? 0.8 : 0.0)!;
       } else if (fraction <= playbackProgress) {
         c = styleConfig.useGradient
             ? Color.lerp(styleConfig.gradientColors.first,
@@ -468,17 +491,21 @@ class WaveformPainter extends CustomPainter {
       }
 
       final strokePaint = Paint()
-        ..color       = c
+        ..color = c
         ..strokeWidth = config.barWidth
-        ..strokeCap   = styleConfig.radialRoundedTips ? StrokeCap.round : StrokeCap.butt;
+        ..strokeCap =
+            styleConfig.radialRoundedTips ? StrokeCap.round : StrokeCap.butt;
 
       if (styleConfig.glowRadius > 0 && isRecording) {
-        canvas.drawLine(Offset(startX, startY), Offset(endX, endY),
+        canvas.drawLine(
+            Offset(startX, startY),
+            Offset(endX, endY),
             Paint()
-              ..color       = c.withOpacity(0.25)
+              ..color = c.withOpacity(0.25)
               ..strokeWidth = config.barWidth * 3
-              ..strokeCap   = StrokeCap.round
-              ..maskFilter  = MaskFilter.blur(BlurStyle.normal, styleConfig.glowRadius));
+              ..strokeCap = StrokeCap.round
+              ..maskFilter =
+                  MaskFilter.blur(BlurStyle.normal, styleConfig.glowRadius));
       }
       canvas.drawLine(Offset(startX, startY), Offset(endX, endY), strokePaint);
     }
@@ -486,9 +513,12 @@ class WaveformPainter extends CustomPainter {
     // Inner circle
     canvas.drawCircle(center, innerR - 2,
         Paint()..color = config.backgroundColor.withOpacity(0.7));
-    canvas.drawCircle(center, innerR - 2,
+    canvas.drawCircle(
+        center,
+        innerR - 2,
         Paint()
-          ..color = (isRecording ? config.recordingColor : config.playedColor).withOpacity(0.3)
+          ..color = (isRecording ? config.recordingColor : config.playedColor)
+              .withOpacity(0.3)
           ..style = PaintingStyle.stroke
           ..strokeWidth = 1.5);
   }
@@ -499,26 +529,28 @@ class WaveformPainter extends CustomPainter {
 
   void _drawWave(Canvas canvas, Size size) {
     if (waveform.isEmpty) return;
-    final count   = (size.width / 2).toInt();
+    final count = (size.width / 2).toInt();
     final samples = waveform.resample(count);
     final centerY = size.height / 2;
 
     for (int layer = styleConfig.waveLayerCount - 1; layer >= 0; layer--) {
-      final t          = layer / max(styleConfig.waveLayerCount - 1, 1);
+      final t = layer / max(styleConfig.waveLayerCount - 1, 1);
       final vertOffset = layer * styleConfig.waveLayerOffset * size.height;
-      final opacity    = 0.25 + (1 - t) * 0.55;
-      final scale      = 0.6 + t * 0.4;
+      final opacity = 0.25 + (1 - t) * 0.55;
+      final scale = 0.6 + t * 0.4;
 
-      final topPath    = Path();
+      final topPath = Path();
       final bottomPath = Path();
 
       for (int i = 0; i < count; i++) {
-        final x  = (i / count) * size.width;
-        final h  = samples[i] * centerY * 0.88 * scale;
-        final y  = centerY - h + vertOffset;
+        final x = (i / count) * size.width;
+        final h = samples[i] * centerY * 0.88 * scale;
+        final y = centerY - h + vertOffset;
         final y2 = centerY + h + vertOffset;
-        if (i == 0) { topPath.moveTo(x, y); bottomPath.moveTo(x, y2); }
-        else if (i % 2 == 0) {
+        if (i == 0) {
+          topPath.moveTo(x, y);
+          bottomPath.moveTo(x, y2);
+        } else if (i % 2 == 0) {
           final px = ((i - 1) / count) * size.width;
           final ph = samples[i - 1] * centerY * 0.88 * scale;
           topPath.quadraticBezierTo(px, centerY - ph + vertOffset, x, y);
@@ -535,32 +567,35 @@ class WaveformPainter extends CustomPainter {
       }
       closedPath.close();
 
-      final baseColor = isRecording ? config.recordingColor : config.playedColor;
+      final baseColor =
+          isRecording ? config.recordingColor : config.playedColor;
       final Paint fillPaint;
 
       if (styleConfig.useGradient) {
         fillPaint = Paint()
           ..shader = LinearGradient(
             begin: Alignment.topCenter,
-            end:   Alignment.bottomCenter,
+            end: Alignment.bottomCenter,
             colors: [
               styleConfig.gradientColors.first.withOpacity(opacity),
               styleConfig.gradientColors.last.withOpacity(opacity * 0.4),
             ],
           ).createShader(Rect.fromLTWH(0, 0, size.width, size.height));
       } else {
-        fillPaint = Paint()..color = baseColor.withOpacity(opacity * (layer == 0 ? 1.0 : 0.55));
+        fillPaint = Paint()
+          ..color = baseColor.withOpacity(opacity * (layer == 0 ? 1.0 : 0.55));
       }
 
       canvas.drawPath(closedPath, fillPaint);
       // Stroke top edge of foreground layer
       if (layer == 0) {
-        canvas.drawPath(topPath,
+        canvas.drawPath(
+            topPath,
             Paint()
-              ..color       = baseColor.withOpacity(0.85)
-              ..style       = PaintingStyle.stroke
+              ..color = baseColor.withOpacity(0.85)
+              ..style = PaintingStyle.stroke
               ..strokeWidth = 1.5
-              ..strokeJoin  = StrokeJoin.round);
+              ..strokeJoin = StrokeJoin.round);
       }
     }
 
@@ -574,22 +609,22 @@ class WaveformPainter extends CustomPainter {
   // ─────────────────────────────────────────────────────────────────────────
 
   void _drawDots(Canvas canvas, Size size) {
-    final rows    = styleConfig.dotRows;
-    final stride  = config.barWidth + config.barGap;
-    final cols    = (size.width / stride).floor();
-    final cellH   = size.height / rows;
-    final r       = min(config.barWidth, cellH) * 0.42;
+    final rows = styleConfig.dotRows;
+    final stride = config.barWidth + config.barGap;
+    final cols = (size.width / stride).floor();
+    final cellH = size.height / rows;
+    final r = min(config.barWidth, cellH) * 0.42;
     final samples = waveform.resample(cols);
 
     for (int col = 0; col < cols; col++) {
-      final amp     = col < samples.length ? samples[col] : 0.0;
+      final amp = col < samples.length ? samples[col] : 0.0;
       final litRows = (amp * rows).round().clamp(1, rows);
-      final cx      = col * stride + config.barWidth / 2;
+      final cx = col * stride + config.barWidth / 2;
       final fraction = col / cols;
 
       for (int row = 0; row < rows; row++) {
-        final cy     = size.height - (row + 0.5) * cellH;
-        final isLit  = row < litRows;
+        final cy = size.height - (row + 0.5) * cellH;
+        final isLit = row < litRows;
         final rowFrac = row / rows; // 0 = bottom, 1 = top
 
         Color dotColor;
@@ -597,14 +632,12 @@ class WaveformPainter extends CustomPainter {
           dotColor = config.idleColor.withOpacity(0.18);
         } else if (isRecording) {
           dotColor = styleConfig.useGradient
-              ? Color.lerp(
-                  styleConfig.gradientColors.first,
+              ? Color.lerp(styleConfig.gradientColors.first,
                   styleConfig.gradientColors.last, rowFrac)!
               : config.recordingColor;
         } else if (fraction <= playbackProgress) {
           dotColor = styleConfig.useGradient
-              ? Color.lerp(
-                  styleConfig.gradientColors.first,
+              ? Color.lerp(styleConfig.gradientColors.first,
                   styleConfig.gradientColors.last, rowFrac)!
               : config.playedColor;
         } else {
@@ -614,8 +647,8 @@ class WaveformPainter extends CustomPainter {
         final paint = styleConfig.dotFilled
             ? (Paint()..color = dotColor)
             : (Paint()
-              ..color       = dotColor
-              ..style       = PaintingStyle.stroke
+              ..color = dotColor
+              ..style = PaintingStyle.stroke
               ..strokeWidth = 1.0);
 
         canvas.drawCircle(Offset(cx, cy), r, paint);
@@ -628,31 +661,35 @@ class WaveformPainter extends CustomPainter {
   // ─────────────────────────────────────────────────────────────────────────
 
   void _drawNeon(Canvas canvas, Size size) {
-    final stride  = config.barWidth + config.barGap;
+    final stride = config.barWidth + config.barGap;
     final maxBars = (size.width / stride).floor();
-    final minH    = size.height * config.minBarHeightFraction;
+    final minH = size.height * config.minBarHeightFraction;
     final centerY = size.height / 2;
     final samples = waveform.resample(maxBars);
 
     for (int i = 0; i < maxBars; i++) {
-      final amp  = i < samples.length ? samples[i] : 0.0;
+      final amp = i < samples.length ? samples[i] : 0.0;
       final barH = (minH + amp * (size.height - minH)).clamp(minH, size.height);
-      final x    = i * stride;
+      final x = i * stride;
       final rect = Rect.fromCenter(
           center: Offset(x + config.barWidth / 2, centerY),
-          width: config.barWidth, height: barH);
-      final rrect = RRect.fromRectAndRadius(rect, Radius.circular(config.barBorderRadius));
+          width: config.barWidth,
+          height: barH);
+      final rrect = RRect.fromRectAndRadius(
+          rect, Radius.circular(config.barBorderRadius));
 
       final baseColor = _barColorRaw(i, maxBars);
 
       // Multi-layer glow (outer → inner)
       for (int g = styleConfig.glowLayers; g >= 0; g--) {
-        final blurSigma = styleConfig.glowRadius * (g + 1) / styleConfig.glowLayers;
+        final blurSigma =
+            styleConfig.glowRadius * (g + 1) / styleConfig.glowLayers;
         final glowOpacity = (0.08 + 0.1 * (1 - g / styleConfig.glowLayers)) *
             (amp + 0.1).clamp(0, 1);
-        canvas.drawRRect(rrect,
+        canvas.drawRRect(
+            rrect,
             Paint()
-              ..color      = baseColor.withOpacity(glowOpacity)
+              ..color = baseColor.withOpacity(glowOpacity)
               ..maskFilter = MaskFilter.blur(BlurStyle.normal, blurSigma));
       }
 
@@ -665,7 +702,8 @@ class WaveformPainter extends CustomPainter {
           RRect.fromRectAndRadius(
             Rect.fromCenter(
                 center: Offset(x + config.barWidth / 2, centerY),
-                width: config.barWidth * 0.35, height: barH * 0.85),
+                width: config.barWidth * 0.35,
+                height: barH * 0.85),
             Radius.circular(config.barBorderRadius),
           ),
           Paint()..color = Colors.white.withOpacity(0.55 * amp),
@@ -684,21 +722,23 @@ class WaveformPainter extends CustomPainter {
 
   void _drawStacked(Canvas canvas, Size size) {
     if (waveform.isEmpty) return;
-    final count    = (size.width / 2).toInt();
-    final samples  = waveform.resample(count);
-    final layers   = styleConfig.waveLayerCount;
+    final count = (size.width / 2).toInt();
+    final samples = waveform.resample(count);
+    final layers = styleConfig.waveLayerCount;
     final baseColor = isRecording ? config.recordingColor : config.playedColor;
 
     for (int layer = layers - 1; layer >= 0; layer--) {
-      final t        = layer / max(layers - 1, 1);
-      final yShift   = (layer - layers / 2) * styleConfig.waveLayerOffset * size.height;
-      final opacity  = 0.12 + (1 - t) * 0.45;
-      final scale    = 0.55 + t * 0.45;
+      final t = layer / max(layers - 1, 1);
+      final yShift =
+          (layer - layers / 2) * styleConfig.waveLayerOffset * size.height;
+      final opacity = 0.12 + (1 - t) * 0.45;
+      final scale = 0.55 + t * 0.45;
       final hueShift = layer * 15.0;
 
       final layerColor = styleConfig.useGradient
           ? Color.lerp(styleConfig.gradientColors.first,
-              styleConfig.gradientColors.last, t)!.withOpacity(opacity)
+                  styleConfig.gradientColors.last, t)!
+              .withOpacity(opacity)
           : _shiftHue(baseColor, hueShift).withOpacity(opacity);
 
       final path = _buildSmoothedPath(samples, size, scale, yShift);
@@ -707,8 +747,8 @@ class WaveformPainter extends CustomPainter {
       canvas.drawPath(
           path,
           Paint()
-            ..color       = layerColor.withOpacity(opacity * 1.5)
-            ..style       = PaintingStyle.stroke
+            ..color = layerColor.withOpacity(opacity * 1.5)
+            ..style = PaintingStyle.stroke
             ..strokeWidth = 1.0);
     }
 
@@ -717,10 +757,11 @@ class WaveformPainter extends CustomPainter {
     }
   }
 
-  Path _buildSmoothedPath(List<double> samples, Size size, double scale, double yShift) {
+  Path _buildSmoothedPath(
+      List<double> samples, Size size, double scale, double yShift) {
     final centerY = size.height / 2 + yShift;
-    final count   = samples.length;
-    final path    = Path();
+    final count = samples.length;
+    final path = Path();
 
     for (int i = 0; i < count; i++) {
       final x = (i / count) * size.width;
@@ -752,22 +793,22 @@ class WaveformPainter extends CustomPainter {
   // ─────────────────────────────────────────────────────────────────────────
 
   void _drawPixel(Canvas canvas, Size size) {
-    final rows    = styleConfig.pixelRows;
-    final gap     = styleConfig.pixelGap;
-    final stride  = config.barWidth + config.barGap;
-    final cols    = (size.width / stride).floor();
-    final cellH   = (size.height - gap * (rows + 1)) / rows;
+    final rows = styleConfig.pixelRows;
+    final gap = styleConfig.pixelGap;
+    final stride = config.barWidth + config.barGap;
+    final cols = (size.width / stride).floor();
+    final cellH = (size.height - gap * (rows + 1)) / rows;
     final samples = waveform.resample(cols);
 
     for (int col = 0; col < cols; col++) {
-      final amp     = col < samples.length ? samples[col] : 0.0;
+      final amp = col < samples.length ? samples[col] : 0.0;
       final litRows = (amp * rows).round().clamp(1, rows);
       final fraction = col / cols;
-      final cx      = col * stride;
+      final cx = col * stride;
 
       for (int row = 0; row < rows; row++) {
-        final cy     = size.height - gap - (row + 1) * (cellH + gap);
-        final isLit  = row < litRows;
+        final cy = size.height - gap - (row + 1) * (cellH + gap);
+        final isLit = row < litRows;
         final rowFrac = row / rows;
 
         Color cellColor;
@@ -782,8 +823,7 @@ class WaveformPainter extends CustomPainter {
           )!;
         } else if (fraction <= playbackProgress) {
           cellColor = styleConfig.useGradient
-              ? Color.lerp(
-                  styleConfig.gradientColors.first,
+              ? Color.lerp(styleConfig.gradientColors.first,
                   styleConfig.gradientColors.last, rowFrac)!
               : config.playedColor;
         } else {
@@ -817,7 +857,7 @@ class WaveformPainter extends CustomPainter {
     return Paint()
       ..shader = LinearGradient(
         begin: Alignment.topCenter,
-        end:   Alignment.bottomCenter,
+        end: Alignment.bottomCenter,
         colors: index / total <= playbackProgress
             ? styleConfig.gradientColors
             : styleConfig.idleGradientColors,
@@ -826,18 +866,22 @@ class WaveformPainter extends CustomPainter {
 
   Color _barColorRaw(int index, int total) {
     if (isRecording) return config.recordingColor;
-    if (total == 0)  return config.idleColor;
-    return index / total <= playbackProgress ? config.playedColor : config.idleColor;
+    if (total == 0) return config.idleColor;
+    return index / total <= playbackProgress
+        ? config.playedColor
+        : config.idleColor;
   }
 
-  void _drawLiveBar(Canvas canvas, Size size, double x, double minH, double maxH) {
+  void _drawLiveBar(
+      Canvas canvas, Size size, double x, double minH, double maxH) {
     if (x >= size.width) return;
     final barH = (minH + currentAmplitude * (maxH - minH)).clamp(minH, maxH);
     canvas.drawRRect(
       RRect.fromRectAndRadius(
         Rect.fromCenter(
             center: Offset(x + config.barWidth / 2, size.height / 2),
-            width: config.barWidth * 1.5, height: barH),
+            width: config.barWidth * 1.5,
+            height: barH),
         Radius.circular(config.barBorderRadius),
       ),
       Paint()..color = config.recordingColor,
@@ -846,8 +890,12 @@ class WaveformPainter extends CustomPainter {
 
   void _drawPlayhead(Canvas canvas, Size size, double x) {
     final color = config.playedColor;
-    canvas.drawLine(Offset(x, 0), Offset(x, size.height),
-        Paint()..color = color..strokeWidth = 1.5);
+    canvas.drawLine(
+        Offset(x, 0),
+        Offset(x, size.height),
+        Paint()
+          ..color = color
+          ..strokeWidth = 1.5);
 
     switch (styleConfig.playheadStyle) {
       case PlayheadStyle.line:
@@ -855,35 +903,49 @@ class WaveformPainter extends CustomPainter {
       case PlayheadStyle.arrows:
         // Top ▼
         canvas.drawPath(
-            Path()..moveTo(x - 5, 0)..lineTo(x + 5, 0)..lineTo(x, 8)..close(),
+            Path()
+              ..moveTo(x - 5, 0)
+              ..lineTo(x + 5, 0)
+              ..lineTo(x, 8)
+              ..close(),
             Paint()..color = color);
         // Bottom ▲
         canvas.drawPath(
-            Path()..moveTo(x - 5, size.height)..lineTo(x + 5, size.height)
-                ..lineTo(x, size.height - 8)..close(),
+            Path()
+              ..moveTo(x - 5, size.height)
+              ..lineTo(x + 5, size.height)
+              ..lineTo(x, size.height - 8)
+              ..close(),
             Paint()..color = color);
       case PlayheadStyle.circle:
-        canvas.drawCircle(Offset(x, size.height / 2), 6,
-            Paint()..color = color);
-        canvas.drawCircle(Offset(x, size.height / 2), 6,
-            Paint()..color = Colors.white.withOpacity(0.8)..style = PaintingStyle.stroke..strokeWidth = 1.5);
+        canvas.drawCircle(
+            Offset(x, size.height / 2), 6, Paint()..color = color);
+        canvas.drawCircle(
+            Offset(x, size.height / 2),
+            6,
+            Paint()
+              ..color = Colors.white.withOpacity(0.8)
+              ..style = PaintingStyle.stroke
+              ..strokeWidth = 1.5);
     }
   }
 
   void _paintSplitPath(
-    Canvas canvas, Size size, Path path, {
+    Canvas canvas,
+    Size size,
+    Path path, {
     required Paint playedPaint,
     required Paint idlePaint,
   }) {
     if (playbackProgress > 0) {
       canvas.save();
-      canvas.clipRect(Rect.fromLTWH(0, 0, playbackProgress * size.width, size.height));
+      canvas.clipRect(
+          Rect.fromLTWH(0, 0, playbackProgress * size.width, size.height));
       canvas.drawPath(path, playedPaint);
       canvas.restore();
     }
     canvas.save();
-    canvas.clipRect(Rect.fromLTWH(
-        playbackProgress * size.width, 0,
+    canvas.clipRect(Rect.fromLTWH(playbackProgress * size.width, 0,
         size.width * (1 - playbackProgress), size.height));
     canvas.drawPath(path, idlePaint);
     canvas.restore();
@@ -892,7 +954,7 @@ class WaveformPainter extends CustomPainter {
   Shader _vertGradient(List<Color> colors, Size size, {double opacity = 1.0}) {
     return LinearGradient(
       begin: Alignment.topCenter,
-      end:   Alignment.bottomCenter,
+      end: Alignment.bottomCenter,
       colors: colors.map((c) => c.withOpacity(opacity)).toList(),
     ).createShader(Rect.fromLTWH(0, 0, size.width, size.height));
   }

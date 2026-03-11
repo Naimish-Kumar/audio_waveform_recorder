@@ -1,5 +1,3 @@
-import 'package:audio_waveform_recorder/src/painters/waveform_painter.dart';
-import 'package:audio_waveform_recorder/src/utils/duration_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:audio_waveform_recorder/audio_waveform_recorder.dart';
 
@@ -35,16 +33,16 @@ class _RecorderDemoPageState extends State<RecorderDemoPage> {
   WaveformStyle _style = WaveformStyle.bars;
 
   final _config = const RecorderConfig(
-    format:         AudioFormat.m4a,
-    sampleRate:     SampleRate.high44k,
-    bitRate:        BitRate.medium128k,
+    format: AudioFormat.m4a,
+    sampleRate: SampleRate.high44k,
+    bitRate: BitRate.medium128k,
     recordingColor: Color(0xFFE53935),
-    playedColor:    Color(0xFF1E88E5),
-    idleColor:      Color(0xFF607D8B),
+    playedColor: Color(0xFF1E88E5),
+    idleColor: Color(0xFF607D8B),
     backgroundColor: Color(0xFF1A1A2E),
-    barWidth:       3.0,
-    barGap:         2.0,
-    maxDuration:    Duration(minutes: 5),
+    barWidth: 3.0,
+    barGap: 2.0,
+    maxDuration: Duration(minutes: 5),
   );
 
   @override
@@ -60,9 +58,12 @@ class _RecorderDemoPageState extends State<RecorderDemoPage> {
             icon: const Icon(Icons.tune),
             onSelected: (s) => setState(() => _style = s),
             itemBuilder: (_) => [
-              const PopupMenuItem(value: WaveformStyle.bars,   child: Text('Bars style')),
-              const PopupMenuItem(value: WaveformStyle.mirror, child: Text('Mirror style')),
-              const PopupMenuItem(value: WaveformStyle.line,   child: Text('Line style')),
+              const PopupMenuItem(
+                  value: WaveformStyle.bars, child: Text('Bars style')),
+              const PopupMenuItem(
+                  value: WaveformStyle.mirror, child: Text('Mirror style')),
+              const PopupMenuItem(
+                  value: WaveformStyle.line, child: Text('Line style')),
             ],
           ),
         ],
@@ -85,7 +86,7 @@ class _RecorderDemoPageState extends State<RecorderDemoPage> {
             const SizedBox(height: 12),
             WaveformRecorderWidget(
               config: _config,
-              style:  _style,
+              style: _style,
               waveformHeight: 80,
               showTimer: true,
               showMaxDuration: true,
@@ -150,7 +151,8 @@ class _RecorderDemoPageState extends State<RecorderDemoPage> {
                           '${DurationFormatter.format(_lastRecording!.duration)}  •  '
                           '${DurationFormatter.formatBytes(_lastRecording!.fileSizeBytes)}  •  '
                           '${_lastRecording!.waveform.length} samples',
-                          style: const TextStyle(color: Colors.grey, fontSize: 12),
+                          style:
+                              const TextStyle(color: Colors.grey, fontSize: 12),
                         ),
                       ],
                     ),
@@ -161,9 +163,9 @@ class _RecorderDemoPageState extends State<RecorderDemoPage> {
               WaveformPlayerWidget(
                 filePath: _lastRecording!.filePath,
                 waveform: _lastRecording!.waveform,
-                config:   _config,
-                style:    _style,
-                waveformHeight:   80,
+                config: _config,
+                style: _style,
+                waveformHeight: 80,
                 showSpeedControl: true,
               ),
             ],
@@ -183,16 +185,17 @@ class _RecorderDemoPageState extends State<RecorderDemoPage> {
               ),
               const SizedBox(height: 12),
               Container(
-                padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
                 decoration: BoxDecoration(
                   color: const Color(0xFF1A1A2E),
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: WaveformPainterWidget(
                   waveform: _lastRecording!.waveform,
-                  config:   _config.copyWith(idleColor: const Color(0xFF4CAF50)),
-                  style:    WaveformStyle.mirror,
-                  height:   48,
+                  config: _config.copyWith(idleColor: const Color(0xFF4CAF50)),
+                  style: WaveformStyle.mirror,
+                  height: 48,
                 ),
               ),
             ],

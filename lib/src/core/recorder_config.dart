@@ -33,9 +33,9 @@ extension AudioFormatExtension on AudioFormat {
 
 /// Audio sample rate in Hz.
 enum SampleRate {
-  low8k   (8000),
+  low8k(8000),
   medium16k(16000),
-  high44k  (44100),
+  high44k(44100),
   studio48k(48000);
 
   final int value;
@@ -44,9 +44,9 @@ enum SampleRate {
 
 /// Audio bit rate in bits per second (for compressed formats).
 enum BitRate {
-  low64k   (64000),
+  low64k(64000),
   medium128k(128000),
-  high256k  (256000);
+  high256k(256000);
 
   final int value;
   const BitRate(this.value);
@@ -113,24 +113,24 @@ class RecorderConfig {
   final double barBorderRadius;
 
   const RecorderConfig({
-    this.format             = AudioFormat.m4a,
-    this.sampleRate         = SampleRate.high44k,
-    this.bitRate            = BitRate.medium128k,
-    this.channels           = 1,
+    this.format = AudioFormat.m4a,
+    this.sampleRate = SampleRate.high44k,
+    this.bitRate = BitRate.medium128k,
+    this.channels = 1,
     this.waveformSampleRate = 100,
     this.maxDuration,
     this.silenceTimeout,
-    this.silenceThreshold   = 0.02,
+    this.silenceThreshold = 0.02,
     this.outputDirectory,
     this.fileName,
-    this.recordingColor     = const Color(0xFFE53935),
-    this.idleColor          = const Color(0xFF90A4AE),
-    this.playedColor        = const Color(0xFF1E88E5),
-    this.backgroundColor    = const Color(0xFF1A1A2E),
-    this.barWidth           = 3.0,
-    this.barGap             = 2.0,
+    this.recordingColor = const Color(0xFFE53935),
+    this.idleColor = const Color(0xFF90A4AE),
+    this.playedColor = const Color(0xFF1E88E5),
+    this.backgroundColor = const Color(0xFF1A1A2E),
+    this.barWidth = 3.0,
+    this.barGap = 2.0,
     this.minBarHeightFraction = 0.05,
-    this.barBorderRadius    = 2.0,
+    this.barBorderRadius = 2.0,
   });
 
   RecorderConfig copyWith({
@@ -154,24 +154,24 @@ class RecorderConfig {
     double? barBorderRadius,
   }) {
     return RecorderConfig(
-      format:               format              ?? this.format,
-      sampleRate:           sampleRate          ?? this.sampleRate,
-      bitRate:              bitRate             ?? this.bitRate,
-      channels:             channels            ?? this.channels,
-      waveformSampleRate:   waveformSampleRate  ?? this.waveformSampleRate,
-      maxDuration:          maxDuration         ?? this.maxDuration,
-      silenceTimeout:       silenceTimeout      ?? this.silenceTimeout,
-      silenceThreshold:     silenceThreshold    ?? this.silenceThreshold,
-      outputDirectory:      outputDirectory     ?? this.outputDirectory,
-      fileName:             fileName            ?? this.fileName,
-      recordingColor:       recordingColor      ?? this.recordingColor,
-      idleColor:            idleColor           ?? this.idleColor,
-      playedColor:          playedColor         ?? this.playedColor,
-      backgroundColor:      backgroundColor    ?? this.backgroundColor,
-      barWidth:             barWidth            ?? this.barWidth,
-      barGap:               barGap              ?? this.barGap,
+      format: format ?? this.format,
+      sampleRate: sampleRate ?? this.sampleRate,
+      bitRate: bitRate ?? this.bitRate,
+      channels: channels ?? this.channels,
+      waveformSampleRate: waveformSampleRate ?? this.waveformSampleRate,
+      maxDuration: maxDuration ?? this.maxDuration,
+      silenceTimeout: silenceTimeout ?? this.silenceTimeout,
+      silenceThreshold: silenceThreshold ?? this.silenceThreshold,
+      outputDirectory: outputDirectory ?? this.outputDirectory,
+      fileName: fileName ?? this.fileName,
+      recordingColor: recordingColor ?? this.recordingColor,
+      idleColor: idleColor ?? this.idleColor,
+      playedColor: playedColor ?? this.playedColor,
+      backgroundColor: backgroundColor ?? this.backgroundColor,
+      barWidth: barWidth ?? this.barWidth,
+      barGap: barGap ?? this.barGap,
       minBarHeightFraction: minBarHeightFraction ?? this.minBarHeightFraction,
-      barBorderRadius:      barBorderRadius     ?? this.barBorderRadius,
+      barBorderRadius: barBorderRadius ?? this.barBorderRadius,
     );
   }
 }

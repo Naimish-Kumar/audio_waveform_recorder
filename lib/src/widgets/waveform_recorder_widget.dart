@@ -53,19 +53,20 @@ class WaveformRecorderWidget extends StatefulWidget {
   final bool showMaxDuration;
 
   /// Custom record button builder.
-  final Widget Function(RecordingState state, VoidCallback onPressed)? recordButtonBuilder;
+  final Widget Function(RecordingState state, VoidCallback onPressed)?
+      recordButtonBuilder;
 
   const WaveformRecorderWidget({
     super.key,
     this.controller,
-    this.config       = const RecorderConfig(),
-    this.style        = WaveformStyle.bars,
+    this.config = const RecorderConfig(),
+    this.style = WaveformStyle.bars,
     this.waveformHeight = 80.0,
     this.onRecordingComplete,
     this.onRecordingCancelled,
     this.onAmplitudeChanged,
-    this.showControls   = true,
-    this.showTimer      = true,
+    this.showControls = true,
+    this.showTimer = true,
     this.showMaxDuration = true,
     this.recordButtonBuilder,
   });
@@ -151,7 +152,8 @@ class _WaveformRecorderWidgetState extends State<WaveformRecorderWidget>
     if (!mounted) return;
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
-        content: Text('Microphone permission denied. Please enable it in settings.'),
+        content:
+            Text('Microphone permission denied. Please enable it in settings.'),
         backgroundColor: Colors.red,
       ),
     );
@@ -235,12 +237,12 @@ class _WaveformRecorderWidgetState extends State<WaveformRecorderWidget>
 
   Widget _buildWaveform() {
     return WaveformPainterWidget(
-      waveform:         _controller.waveform,
-      config:           widget.config,
-      isRecording:      _controller.isRecording,
+      waveform: _controller.waveform,
+      config: widget.config,
+      isRecording: _controller.isRecording,
       currentAmplitude: _controller.currentAmplitude,
-      style:            widget.style,
-      height:           widget.waveformHeight,
+      style: widget.style,
+      height: widget.waveformHeight,
     );
   }
 
@@ -272,7 +274,8 @@ class _WaveformRecorderWidgetState extends State<WaveformRecorderWidget>
       children: [
         // Cancel button (visible when recording or paused)
         AnimatedOpacity(
-          opacity: (_controller.isRecording || _controller.isPaused) ? 1.0 : 0.0,
+          opacity:
+              (_controller.isRecording || _controller.isPaused) ? 1.0 : 0.0,
           duration: const Duration(milliseconds: 200),
           child: _ControlButton(
             icon: Icons.close,
@@ -299,7 +302,8 @@ class _WaveformRecorderWidgetState extends State<WaveformRecorderWidget>
 
         // Stop / Done button (visible when recording or paused)
         AnimatedOpacity(
-          opacity: (_controller.isRecording || _controller.isPaused) ? 1.0 : 0.0,
+          opacity:
+              (_controller.isRecording || _controller.isPaused) ? 1.0 : 0.0,
           duration: const Duration(milliseconds: 200),
           child: _ControlButton(
             icon: Icons.stop,
@@ -325,20 +329,20 @@ class _WaveformRecorderWidgetState extends State<WaveformRecorderWidget>
     String tooltip;
 
     if (isActive) {
-      icon    = Icons.pause;
-      color   = widget.config.recordingColor;
+      icon = Icons.pause;
+      color = widget.config.recordingColor;
       tooltip = 'Pause';
     } else if (isPaused) {
-      icon    = Icons.mic;
-      color   = widget.config.recordingColor;
+      icon = Icons.mic;
+      color = widget.config.recordingColor;
       tooltip = 'Resume';
     } else if (isStopped) {
-      icon    = Icons.refresh;
-      color   = widget.config.playedColor;
+      icon = Icons.refresh;
+      color = widget.config.playedColor;
       tooltip = 'Record again';
     } else {
-      icon    = Icons.mic;
-      color   = widget.config.recordingColor;
+      icon = Icons.mic;
+      color = widget.config.recordingColor;
       tooltip = 'Start recording';
     }
 
@@ -349,12 +353,12 @@ class _WaveformRecorderWidgetState extends State<WaveformRecorderWidget>
         child: child,
       ),
       child: _ControlButton(
-        icon:      icon,
-        color:     color,
-        size:      64,
+        icon: icon,
+        color: color,
+        size: 64,
         onPressed: isStopped ? _controller.reset : _handleRecordPress,
-        tooltip:   tooltip,
-        filled:    true,
+        tooltip: tooltip,
+        filled: true,
       ),
     );
   }

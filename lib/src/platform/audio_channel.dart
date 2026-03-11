@@ -29,14 +29,15 @@ class AudioChannel {
     String? fileName,
   }) async {
     final path = await _channel.invokeMethod<String>('startRecording', {
-      'format':     format,
+      'format': format,
       'sampleRate': sampleRate,
-      'bitRate':    bitRate,
-      'channels':   channels,
+      'bitRate': bitRate,
+      'channels': channels,
       if (outputDir != null) 'outputDir': outputDir,
-      if (fileName  != null) 'fileName':  fileName,
+      if (fileName != null) 'fileName': fileName,
     });
-    if (path == null) throw const AudioException('startRecording returned null path');
+    if (path == null)
+      throw const AudioException('startRecording returned null path');
     return path;
   }
 
@@ -53,7 +54,8 @@ class AudioChannel {
   /// Stop recording. Returns a map with path, durationMs, sizeBytes.
   static Future<Map<String, dynamic>> stopRecording() async {
     final result = await _channel.invokeMethod<Map>('stopRecording');
-    if (result == null) throw const AudioException('stopRecording returned null');
+    if (result == null)
+      throw const AudioException('stopRecording returned null');
     return Map<String, dynamic>.from(result);
   }
 
@@ -72,7 +74,8 @@ class AudioChannel {
 
   /// Load an audio file. Returns map with durationMs.
   static Future<Map<String, dynamic>> loadAudio(String path) async {
-    final result = await _channel.invokeMethod<Map>('loadAudio', {'path': path});
+    final result =
+        await _channel.invokeMethod<Map>('loadAudio', {'path': path});
     if (result == null) throw const AudioException('loadAudio returned null');
     return Map<String, dynamic>.from(result);
   }

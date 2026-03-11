@@ -24,32 +24,33 @@ class PlayerController extends ChangeNotifier {
   WaveformData _waveform = WaveformData.empty();
   String? _filePath;
   double _volume = 1.0;
-  double _speed  = 1.0;
+  double _speed = 1.0;
   String? _error;
 
   Timer? _positionTimer;
 
   // ── Getters ───────────────────────────────────────────────────────────
 
-  PlaybackState get state    => _state;
-  Duration      get position => _position;
-  Duration      get duration => _duration;
-  WaveformData  get waveform => _waveform;
-  String?       get filePath => _filePath;
-  double        get volume   => _volume;
-  double        get speed    => _speed;
-  String?       get error    => _error;
+  PlaybackState get state => _state;
+  Duration get position => _position;
+  Duration get duration => _duration;
+  WaveformData get waveform => _waveform;
+  String? get filePath => _filePath;
+  double get volume => _volume;
+  double get speed => _speed;
+  String? get error => _error;
 
-  bool get isIdle      => _state == PlaybackState.idle;
-  bool get isPlaying   => _state == PlaybackState.playing;
-  bool get isPaused    => _state == PlaybackState.paused;
+  bool get isIdle => _state == PlaybackState.idle;
+  bool get isPlaying => _state == PlaybackState.playing;
+  bool get isPaused => _state == PlaybackState.paused;
   bool get isCompleted => _state == PlaybackState.completed;
-  bool get isLoaded    => _filePath != null;
+  bool get isLoaded => _filePath != null;
 
   /// Progress 0.0–1.0 based on position/duration.
   double get progress {
     if (_duration.inMilliseconds == 0) return 0.0;
-    return (_position.inMilliseconds / _duration.inMilliseconds).clamp(0.0, 1.0);
+    return (_position.inMilliseconds / _duration.inMilliseconds)
+        .clamp(0.0, 1.0);
   }
 
   /// Index of the currently-playing waveform bar.
@@ -168,19 +169,22 @@ class PlayerController extends ChangeNotifier {
   }
 
   /// Skip forward by [duration] (default 5 seconds).
-  Future<void> skipForward([Duration duration = const Duration(seconds: 5)]) async {
+  Future<void> skipForward(
+      [Duration duration = const Duration(seconds: 5)]) async {
     await seekTo(_position + duration);
   }
 
   /// Skip backward by [duration] (default 5 seconds).
-  Future<void> skipBackward([Duration duration = const Duration(seconds: 5)]) async {
+  Future<void> skipBackward(
+      [Duration duration = const Duration(seconds: 5)]) async {
     await seekTo(_position - duration);
   }
 
   // ── Internal ──────────────────────────────────────────────────────────
 
   void _startPositionTracking() {
-    _positionTimer = Timer.periodic(const Duration(milliseconds: 100), (_) async {
+    _positionTimer =
+        Timer.periodic(const Duration(milliseconds: 100), (_) async {
       if (!isPlaying) return;
       try {
         final posMs = await AudioChannel.getPlaybackPosition();

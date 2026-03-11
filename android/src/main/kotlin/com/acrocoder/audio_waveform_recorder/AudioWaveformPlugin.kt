@@ -1,4 +1,4 @@
-package com.example.audio_waveform_recorder
+package com.acrocoder.audio_waveform_recorder
 
 import android.Manifest
 import android.content.pm.PackageManager

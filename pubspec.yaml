@@ -4,9 +4,9 @@ description: >
   Playback with waveform scrubbing. Export to M4A/AAC/WAV/MP4.
   Zero heavy dependencies - pure Dart UI + native platform channels.
 version: 0.1.0
-homepage: https://github.com/yourusername/audio_waveform_recorder
-repository: https://github.com/yourusername/audio_waveform_recorder
-issue_tracker: https://github.com/yourusername/audio_waveform_recorder/issues
+homepage: https://github.com/Naimish-Kumar/audio_waveform_recorder
+repository: https://github.com/Naimish-Kumar/audio_waveform_recorder
+issue_tracker: https://github.com/Naimish-Kumar/audio_waveform_recorder/issues
 topics:
   - audio
   - recorder
@@ -21,7 +21,7 @@ flutter:
   plugin:
     platforms:
       android:
-        package: com.example.audio_waveform_recorder
+        package: com.acrocoder.audio_waveform_recorder
         pluginClass: AudioWaveformPlugin
       ios:
         pluginClass: AudioWaveformPlugin
