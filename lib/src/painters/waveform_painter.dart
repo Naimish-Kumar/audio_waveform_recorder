@@ -272,8 +272,9 @@ class WaveformPainter extends CustomPainter {
       );
     }
 
-    if (isRecording)
+    if (isRecording) {
       _drawLiveBar(canvas, size, maxBars * stride, minH, size.height);
+    }
     if (styleConfig.showPlayhead && (isPlaying || playbackProgress > 0)) {
       _drawPlayhead(canvas, size, playbackProgress * size.width);
     }

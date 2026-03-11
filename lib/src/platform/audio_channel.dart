@@ -36,8 +36,9 @@ class AudioChannel {
       if (outputDir != null) 'outputDir': outputDir,
       if (fileName != null) 'fileName': fileName,
     });
-    if (path == null)
+    if (path == null) {
       throw const AudioException('startRecording returned null path');
+    }
     return path;
   }
 
@@ -54,8 +55,9 @@ class AudioChannel {
   /// Stop recording. Returns a map with path, durationMs, sizeBytes.
   static Future<Map<String, dynamic>> stopRecording() async {
     final result = await _channel.invokeMethod<Map>('stopRecording');
-    if (result == null)
+    if (result == null) {
       throw const AudioException('stopRecording returned null');
+    }
     return Map<String, dynamic>.from(result);
   }
 

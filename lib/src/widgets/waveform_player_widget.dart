@@ -63,11 +63,12 @@ class _WaveformPlayerWidgetState extends State<WaveformPlayerWidget> {
       await _player.load(widget.filePath, waveform: widget.waveform);
       if (mounted) setState(() => _loading = false);
     } catch (e) {
-      if (mounted)
+      if (mounted) {
         setState(() {
           _loading = false;
           _error = e.toString();
         });
+      }
     }
   }
 
