@@ -1,0 +1,8 @@
+# Development files
+waveform_playground.jsx
+
+# Build artifacts
+build/
+.dart_tool/
+.packages
+pubspec.lock

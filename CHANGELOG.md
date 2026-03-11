@@ -2,7 +2,7 @@
 
 * Initial release
 * Real-time waveform recording with animated bar display
-* Three waveform styles: bars, mirror, line
+* Ten waveform styles: bars, mirror, line, equalizer, radial, wave, dots, neon, stacked, pixel
 * Pause / resume recording support
 * Waveform playback with tap/drag scrubbing
 * Speed control (0.5× – 2.0×)

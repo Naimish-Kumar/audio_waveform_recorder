@@ -10,11 +10,32 @@ Record audio with a **real-time animated waveform** and play it back with **wave
 
 ---
 
+## 🎨 10 Waveform Styles
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Naimish-Kumar/audio_waveform_recorder/main/screenshots/waveform_styles.png" alt="Waveform Styles" width="700"/>
+</p>
+
+| Style | Description |
+|-------|-------------|
+| **Bars** | Classic centre-aligned bars — WhatsApp / Telegram style |
+| **Mirror** | Symmetrical mirror bars, top + bottom — Spotify style |
+| **Line** | Filled closed-path shape — SoundCloud style |
+| **Equalizer** | Bottom-anchored histogram bars — DJ / EQ style |
+| **Radial** | Circular radial bars from centre — vinyl / radar style |
+| **Wave** | Smooth cubic-bezier with gradient layers — Apple Music style |
+| **Dots** | Dot matrix — amplitude mapped to dot radius — retro LED style |
+| **Neon** | Glowing bars with bloom shadow — cyberpunk style |
+| **Stacked** | Semi-transparent layers with depth — holographic style |
+| **Pixel** | Pixel-art blocky cells on a grid — retro game style |
+
+---
+
 ## ✨ Features
 
 - 🎙 **Real-time waveform** — animated bars update as you speak
 - ▶️ **Waveform playback scrubbing** — tap or drag to seek
-- 🎨 **3 waveform styles** — bars, mirror, line (SoundCloud)
+- 🎨 **10 waveform styles** — bars, mirror, line, equalizer, radial, wave, dots, neon, stacked, pixel
 - 🔴 **Pulsing record indicator** — animated recording dot
 - ⏸ **Pause / resume** recording
 - ⏭ **Speed control** — 0.5× to 2.0×
@@ -22,7 +43,7 @@ Record audio with a **real-time animated waveform** and play it back with **wave
 - 💾 **M4A / WAV / MP4 / OGG** output formats
 - 🔕 **Silence auto-stop** — configurable timeout
 - ⏱ **Max duration** limit with indicator
-- 🎛 **Full customisation** — colours, bar size, themes
+- 🎛 **Full customisation** — colours, bar size, themes, gradients, glow effects
 
 ---
 
@@ -164,6 +185,39 @@ RecorderConfig(
 )
 ```
 
+### Per-style customisation with WaveformStyleConfig
+
+```dart
+WaveformStyleConfig(
+  // Gradient
+  useGradient:             true,
+  gradientColors:          [Color(0xFFE53935), Color(0xFFFF7043)],
+  // Glow (neon / radial)
+  glowRadius:              8.0,
+  glowLayers:              2,
+  // Radial
+  radialInnerFraction:     0.25,
+  radialRoundedTips:       true,
+  // Wave / stacked
+  waveLayerCount:          3,
+  waveLayerOffset:         0.08,
+  // Dots
+  dotRows:                 8,
+  dotFilled:               true,
+  // Pixel
+  pixelRows:               10,
+  pixelGap:                1.5,
+  // Equalizer
+  equalizerShowPeak:       true,
+  equalizerPeakDecay:      0.92,
+  // Mirror
+  mirrorReflectionOpacity: 0.45,
+  // Playhead
+  showPlayhead:            true,
+  playheadStyle:           PlayheadStyle.line,
+)
+```
+
 ---
 
 ## 🏗 Architecture
@@ -195,4 +249,4 @@ dependencies:
 
 ## 📄 License
 
-MIT License
+MIT License — see [LICENSE](LICENSE) for details.
