@@ -190,7 +190,7 @@ class _WaveformPlayerWidgetState extends State<WaveformPlayerWidget> {
               color: widget.config.playedColor,
               boxShadow: [
                 BoxShadow(
-                  color: widget.config.playedColor.withOpacity(0.4),
+                  color: widget.config.playedColor.withValues(alpha: 0.4),
                   blurRadius: 12,
                   offset: const Offset(0, 4),
                 ),

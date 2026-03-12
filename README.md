@@ -1,228 +1,223 @@
-# audio_waveform_recorder
+<div align="center">
+  <h1>🎙️ Audio Waveform Recorder</h1>
+  
+  <p><strong>Record audio with a real-time animated waveform and play it back with waveform scrubbing.</strong></p>
+  
+  <p>
+    <a href="https://pub.dev/packages/audio_waveform_recorder"><img src="https://img.shields.io/pub/v/audio_waveform_recorder?color=blue&logo=dart" alt="pub.dev"></a>
+    <a href="https://pub.dev/packages/audio_waveform_recorder"><img src="https://img.shields.io/badge/Platform-Android%20%7C%20iOS-1DA1F2?logo=flutter&logoColor=white" alt="Platform"></a>
+    <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-success" alt="License"></a>
+  </p>
 
-[![pub.dev](https://img.shields.io/pub/v/audio_waveform_recorder.svg)](https://pub.dev/packages/audio_waveform_recorder)
-[![Platform](https://img.shields.io/badge/platform-Android%20%7C%20iOS-blue)](https://pub.dev/packages/audio_waveform_recorder)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-
-Record audio with a **real-time animated waveform** and play it back with **waveform scrubbing** — like WhatsApp or Telegram voice messages.
-
-**Zero heavy dependencies.** Pure Dart UI + native platform channels.
+  <p>
+    <em>Zero heavy dependencies. Pure Dart UI + Native Platform Channels.</em>
+  </p>
+</div>
 
 ---
 
-## 🎨 10 Waveform Styles
+## 🎨 10 Exquisite Waveform Styles
+
+Choose from beautifully crafted, highly customizable 60fps waveform animations.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Naimish-Kumar/audio_waveform_recorder/main/screenshots/waveform_styles.png" alt="Waveform Styles" width="700"/>
+  <img src="screenshots/waveform_styles.png" alt="Waveform Styles Demo" width="800" style="border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"/>
 </p>
 
-| Style | Description |
-|-------|-------------|
-| **Bars** | Classic centre-aligned bars — WhatsApp / Telegram style |
-| **Mirror** | Symmetrical mirror bars, top + bottom — Spotify style |
-| **Line** | Filled closed-path shape — SoundCloud style |
-| **Equalizer** | Bottom-anchored histogram bars — DJ / EQ style |
-| **Radial** | Circular radial bars from centre — vinyl / radar style |
-| **Wave** | Smooth cubic-bezier with gradient layers — Apple Music style |
-| **Dots** | Dot matrix — amplitude mapped to dot radius — retro LED style |
-| **Neon** | Glowing bars with bloom shadow — cyberpunk style |
-| **Stacked** | Semi-transparent layers with depth — holographic style |
-| **Pixel** | Pixel-art blocky cells on a grid — retro game style |
+| Style | Description | Vibe |
+|:---:|:---|:---|
+| **Bars** | Classic centre-aligned bars | *WhatsApp / Telegram* |
+| **Mirror** | Symmetrical mirror bars, top + bottom | *Spotify* |
+| **Line** | Filled closed-path shape | *SoundCloud* |
+| **Equalizer** | Bottom-anchored histogram bars | *DJ / EQ* |
+| **Radial** | Circular radial bars from centre | *Vinyl / Radar* |
+| **Wave** | Smooth cubic-bezier with gradient layers | *Apple Music* |
+| **Dots** | Dot matrix, amplitude mapped to dot radius | *Retro LED / Nothing OS* |
+| **Neon** | Glowing bars with bloom shadow | *Cyberpunk* |
+| **Stacked** | Semi-transparent layers with depth | *Holographic* |
+| **Pixel** | Pixel-art blocky cells on a grid | *Retro 8-bit / Arcade* |
 
 ---
 
-## ✨ Features
+## ✨ Supercharged Features
 
-- 🎙 **Real-time waveform** — animated bars update as you speak
-- ▶️ **Waveform playback scrubbing** — tap or drag to seek
-- 🎨 **10 waveform styles** — bars, mirror, line, equalizer, radial, wave, dots, neon, stacked, pixel
-- 🔴 **Pulsing record indicator** — animated recording dot
-- ⏸ **Pause / resume** recording
-- ⏭ **Speed control** — 0.5× to 2.0×
-- 📊 **Waveform extraction** — from existing audio files too
-- 💾 **M4A / WAV / MP4 / OGG** output formats
-- 🔕 **Silence auto-stop** — configurable timeout
-- ⏱ **Max duration** limit with indicator
-- 🎛 **Full customisation** — colours, bar size, themes, gradients, glow effects
+*   🎙️ **Real-Time Visuals** — Animated bars that respond instantly to your voice.
+*   ▶️ **Interactive Scrubbing** — Tap, drag, or scrub through the waveform seamlessly.
+*   🔴 **Pulsing Indicator** — A sleek, animated recording dot.
+*   ⏸️ **Pause & Resume** — Perfect control over your recording sessions.
+*   ⏭️ **Speed Control** — Adjust playback speed seamlessly from `0.5x` to `2.0x`.
+*   📊 **Instant Extraction** — Generate waveforms from existing local audio files.
+*   💾 **Multiple Formats** — Export to `M4A`, `WAV`, `MP4`, or `OGG`.
+*   🔕 **Smart Silence Detection** — Configurable timeout to automatically stop recording when it goes quiet.
+*   ⏱️ **Built-in Limits** — Optional max-duration limit with UI indicators.
+*   🎛️ **Pixel-Perfect Customization** — Tweak colors, gradients, glow radii, gaps, and rounding.
 
 ---
 
-## 🚀 Installation
+## 🚀 Getting Started
+
+### 1. Add Dependency
+
+Add the package to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
   audio_waveform_recorder: ^0.1.0
 ```
 
-**Android** — add to `AndroidManifest.xml`:
+### 2. Configure Permissions
+
+<details>
+<summary><b>Android Setup</b></summary>
+<br>
+
+Add the following to your `android/app/src/main/AndroidManifest.xml`:
+
 ```xml
 <uses-permission android:name="android.permission.RECORD_AUDIO"/>
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 ```
+</details>
 
-**iOS** — add to `Info.plist`:
+<details>
+<summary><b>iOS Setup</b></summary>
+<br>
+
+Add the following to your `ios/Runner/Info.plist`:
+
 ```xml
 <key>NSMicrophoneUsageDescription</key>
-<string>This app needs microphone access to record audio.</string>
+<string>This app needs microphone access to record awesome audio messages.</string>
 ```
+</details>
 
 ---
 
-## 📱 Usage
+## 📱 Quick Usage
 
-### Drop-in recorder widget
+The simplest way to use the package is with the drop-in, plug-and-play widgets.
+
+### 🎙️ The Recorder Widget
+
 ```dart
 WaveformRecorderWidget(
   config: RecorderConfig(
     format: AudioFormat.m4a,
-    maxDuration: Duration(minutes: 5),
-    recordingColor: Colors.red,
-    playedColor: Colors.blue,
+    maxDuration: const Duration(minutes: 5),
+    recordingColor: Colors.redAccent,
+    playedColor: Colors.blueAccent,
   ),
-  style: WaveformStyle.bars,
+  style: WaveformStyle.neon, // Try different styles here!
   onRecordingComplete: (RecordingResult result) {
-    print('File: ${result.filePath}');
-    print('Duration: ${result.duration}');
-    print('Size: ${result.fileSizeBytes} bytes');
-    print('Samples: ${result.waveform.length}');
+    debugPrint('🎉 Saved at: ${result.filePath}');
+    debugPrint('⏳ Duration: ${result.duration}');
   },
 )
 ```
 
-### Drop-in player widget
+### ▶️ The Player Widget
+
+Pass the waveform extracted during recording for instant visual playback.
+
 ```dart
 WaveformPlayerWidget(
   filePath: result.filePath,
-  waveform: result.waveform,   // pass from recording for instant display
+  waveform: result.waveform,
   config: RecorderConfig(
     playedColor: Colors.blue,
-    idleColor: Colors.grey,
+    idleColor: Colors.grey.withValues(alpha: 0.3),
   ),
   showSpeedControl: true,
 )
 ```
 
-### Manual control with RecorderController
+### 🎛️ Need Manual Control?
+
+Use `RecorderController` to build your entirely custom UI while we handle the engine.
+
 ```dart
 final controller = RecorderController(
   config: RecorderConfig(format: AudioFormat.wav),
 );
 
-// Request permission
-final granted = await controller.requestPermission();
+// 1. Request permission
+await controller.requestPermission();
 
-// Start recording
+// 2. Start / Pause / Resume
 await controller.start();
-
-// Pause / Resume
 await controller.pause();
 await controller.resume();
 
-// Stop and get result
+// 3. Stop and grab the file + waveform data
 final result = await controller.stop();
-print(result?.filePath);
 
-// Cancel (deletes file)
+// 4. Or cancel (automatically deletes the file)
 await controller.cancel();
-
-// Listen to state changes
-controller.addListener(() {
-  print(controller.currentAmplitude);   // 0.0 – 1.0
-  print(controller.elapsed);            // Duration
-  print(controller.waveform.samples);   // List<double>
-});
-```
-
-### Standalone waveform display
-```dart
-WaveformPainterWidget(
-  waveform: myWaveformData,
-  config: RecorderConfig(),
-  playbackProgress: 0.4,   // 40% played
-  style: WaveformStyle.mirror,
-  height: 64,
-  onTap: (fraction) => player.seekToFraction(fraction),
-)
-```
-
-### Extract waveform from existing file
-```dart
-final samples = await AudioChannel.extractWaveform(
-  '/path/to/audio.m4a',
-  sampleCount: 200,
-);
-final waveform = WaveformData(
-  samples: samples,
-  duration: Duration(seconds: 30),
-);
 ```
 
 ---
 
-## ⚙️ Configuration
+## ⚙️ Advanced Configuration
+
+Tweak every single visual aspect.
 
 ```dart
 RecorderConfig(
-  // Recording
-  format:              AudioFormat.m4a,       // m4a | wav | mp4 | ogg
-  sampleRate:          SampleRate.high44k,    // 8k | 16k | 44.1k | 48k
-  bitRate:             BitRate.medium128k,    // 64k | 128k | 256k
-  channels:            1,                     // 1=mono, 2=stereo
-  maxDuration:         Duration(minutes: 5),  // null = unlimited
-  silenceTimeout:      Duration(seconds: 3),  // null = no auto-stop
-  silenceThreshold:    0.02,                  // 0.0–1.0
-
-  // Waveform visual
-  waveformSampleRate:  100,                   // samples per second
-  recordingColor:      Colors.red,
+  // Audio Settings
+  format:           AudioFormat.m4a,       // m4a, wav, mp4, ogg
+  sampleRate:       SampleRate.high44k,    // 8k, 16k, 44.1k, 48k
+  bitRate:          BitRate.medium128k,    // 64k, 128k, 256k
+  channels:         1,                     // 1=Mono, 2=Stereo
+  maxDuration:      const Duration(minutes: 5),
+  silenceTimeout:   const Duration(seconds: 3),
+  
+  // Base Visuals
+  waveformSampleRate:  100,                  
+  recordingColor:      Colors.redAccent,
   idleColor:           Colors.grey,
-  playedColor:         Colors.blue,
-  backgroundColor:     Color(0xFF1A1A2E),
-  barWidth:            3.0,
-  barGap:              2.0,
-  barBorderRadius:     2.0,
-  minBarHeightFraction: 0.05,
+  playedColor:         Colors.blueAccent,
+  barWidth:            4.0,
+  barGap:              2.5,
+  barBorderRadius:     4.0,
 )
 ```
 
-### Per-style customisation with WaveformStyleConfig
+### 💫 Style-Specific Customization
+
+Unlock the full power of each visual style using `WaveformStyleConfig`.
 
 ```dart
 WaveformStyleConfig(
-  // Gradient
-  useGradient:             true,
-  gradientColors:          [Color(0xFFE53935), Color(0xFFFF7043)],
-  // Glow (neon / radial)
-  glowRadius:              8.0,
-  glowLayers:              2,
-  // Radial
-  radialInnerFraction:     0.25,
-  radialRoundedTips:       true,
-  // Wave / stacked
-  waveLayerCount:          3,
-  waveLayerOffset:         0.08,
-  // Dots
-  dotRows:                 8,
-  dotFilled:               true,
-  // Pixel
-  pixelRows:               10,
-  pixelGap:                1.5,
-  // Equalizer
-  equalizerShowPeak:       true,
-  equalizerPeakDecay:      0.92,
-  // Mirror
-  mirrorReflectionOpacity: 0.45,
-  // Playhead
-  showPlayhead:            true,
-  playheadStyle:           PlayheadStyle.line,
+  // Gradients
+  useGradient: true,
+  gradientColors: [Colors.orange, Colors.red],
+  
+  // Neon Glow Effects
+  glowRadius: 10.0,
+  glowLayers: 3,
+  
+  // Radial (Circular) Settings
+  radialInnerFraction: 0.3,
+  radialRoundedTips: true,
+  
+  // Wave Layers
+  waveLayerCount: 3,
+  waveLayerOffset: 0.1,
+  
+  // Retro Pixel & Dots
+  pixelRows: 12,
+  dotFilled: true,
+  
+  // Mirror Opacity
+  mirrorReflectionOpacity: 0.3,
 )
 ```
 
 ---
 
-## 🏗 Architecture
+## 🏗️ Architecture Under The Hood
 
-```
+```ascii
 WaveformRecorderWidget          WaveformPlayerWidget
        │                               │
 RecorderController              PlayerController
@@ -237,16 +232,8 @@ RecorderController              PlayerController
 
 ---
 
-## 📦 Dependencies
+## 🤝 Contributing & License
 
-```yaml
-dependencies:
-  flutter:
-    sdk: flutter   # That's it.
-```
+We love pull requests! If you have an idea for a new waveform style or feature, feel free to open an issue or PR.
 
----
-
-## 📄 License
-
-MIT License — see [LICENSE](LICENSE) for details.
+Distributed under the **MIT License**. Built with ❤️ by pure Dart UI perfectionists.

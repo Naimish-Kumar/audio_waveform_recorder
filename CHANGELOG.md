@@ -1,3 +1,9 @@
+## 0.1.1
+
+* Fix: `withOpacity` deprecated warnings resolved by switching to `withValues(alpha:)`
+* Fix: Shortened package description in `pubspec.yaml` to fix pub score
+* Docs: Completely redesigned `README.md` for a premium look on pub.dev
+
 ## 0.1.0
 
 * Initial release

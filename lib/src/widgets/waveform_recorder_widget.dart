@@ -206,7 +206,7 @@ class _WaveformRecorderWidgetState extends State<WaveformRecorderWidget>
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: widget.config.recordingColor
-                      .withOpacity(_pulseAnim.value),
+                      .withValues(alpha: _pulseAnim.value),
                 ),
               ),
             ),
@@ -251,7 +251,7 @@ class _WaveformRecorderWidgetState extends State<WaveformRecorderWidget>
       margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-        color: Colors.red.shade900.withOpacity(0.3),
+        color: Colors.red.shade900.withValues(alpha: 0.3),
         borderRadius: BorderRadius.circular(8),
         border: Border.all(color: Colors.red.shade700, width: 1),
       ),

@@ -313,8 +313,8 @@ class WaveformPainter extends CustomPainter {
           Radius.circular(config.barBorderRadius),
         ),
         Paint()
-          ..color =
-              basePaint.color.withOpacity(styleConfig.mirrorReflectionOpacity)
+          ..color = basePaint.color
+              .withValues(alpha: styleConfig.mirrorReflectionOpacity)
           ..shader = basePaint.shader,
       );
     }
@@ -336,12 +336,12 @@ class WaveformPainter extends CustomPainter {
 
     _paintSplitPath(canvas, size, path,
         playedPaint: Paint()
-          ..color = config.playedColor.withOpacity(0.75)
+          ..color = config.playedColor.withValues(alpha: 0.75)
           ..shader = styleConfig.useGradient
               ? _vertGradient(styleConfig.gradientColors, size, opacity: 0.75)
               : null,
         idlePaint: Paint()
-          ..color = config.idleColor.withOpacity(0.45)
+          ..color = config.idleColor.withValues(alpha: 0.45)
           ..shader = styleConfig.useGradient
               ? _vertGradient(styleConfig.idleGradientColors, size,
                   opacity: 0.45)
@@ -444,7 +444,7 @@ class WaveformPainter extends CustomPainter {
             Rect.fromLTWH(x, peakY, config.barWidth, 3),
             const Radius.circular(1.5),
           ),
-          Paint()..color = Colors.white.withOpacity(0.9),
+          Paint()..color = Colors.white.withValues(alpha: 0.9),
         );
       }
     }
@@ -480,8 +480,10 @@ class WaveformPainter extends CustomPainter {
       final fraction = i / maxBars;
       Color c;
       if (isRecording) {
-        c = Color.lerp(config.recordingColor,
-            config.recordingColor.withOpacity(0.4), amp < 0.1 ? 0.8 : 0.0)!;
+        c = Color.lerp(
+            config.recordingColor,
+            config.recordingColor.withValues(alpha: 0.4),
+            amp < 0.1 ? 0.8 : 0.0)!;
       } else if (fraction <= playbackProgress) {
         c = styleConfig.useGradient
             ? Color.lerp(styleConfig.gradientColors.first,
@@ -502,7 +504,7 @@ class WaveformPainter extends CustomPainter {
             Offset(startX, startY),
             Offset(endX, endY),
             Paint()
-              ..color = c.withOpacity(0.25)
+              ..color = c.withValues(alpha: 0.25)
               ..strokeWidth = config.barWidth * 3
               ..strokeCap = StrokeCap.round
               ..maskFilter =
@@ -513,13 +515,13 @@ class WaveformPainter extends CustomPainter {
 
     // Inner circle
     canvas.drawCircle(center, innerR - 2,
-        Paint()..color = config.backgroundColor.withOpacity(0.7));
+        Paint()..color = config.backgroundColor.withValues(alpha: 0.7));
     canvas.drawCircle(
         center,
         innerR - 2,
         Paint()
           ..color = (isRecording ? config.recordingColor : config.playedColor)
-              .withOpacity(0.3)
+              .withValues(alpha: 0.3)
           ..style = PaintingStyle.stroke
           ..strokeWidth = 1.5);
   }
@@ -578,13 +580,14 @@ class WaveformPainter extends CustomPainter {
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              styleConfig.gradientColors.first.withOpacity(opacity),
-              styleConfig.gradientColors.last.withOpacity(opacity * 0.4),
+              styleConfig.gradientColors.first.withValues(alpha: opacity),
+              styleConfig.gradientColors.last.withValues(alpha: opacity * 0.4),
             ],
           ).createShader(Rect.fromLTWH(0, 0, size.width, size.height));
       } else {
         fillPaint = Paint()
-          ..color = baseColor.withOpacity(opacity * (layer == 0 ? 1.0 : 0.55));
+          ..color =
+              baseColor.withValues(alpha: opacity * (layer == 0 ? 1.0 : 0.55));
       }
 
       canvas.drawPath(closedPath, fillPaint);
@@ -593,7 +596,7 @@ class WaveformPainter extends CustomPainter {
         canvas.drawPath(
             topPath,
             Paint()
-              ..color = baseColor.withOpacity(0.85)
+              ..color = baseColor.withValues(alpha: 0.85)
               ..style = PaintingStyle.stroke
               ..strokeWidth = 1.5
               ..strokeJoin = StrokeJoin.round);
@@ -630,7 +633,7 @@ class WaveformPainter extends CustomPainter {
 
         Color dotColor;
         if (!isLit) {
-          dotColor = config.idleColor.withOpacity(0.18);
+          dotColor = config.idleColor.withValues(alpha: 0.18);
         } else if (isRecording) {
           dotColor = styleConfig.useGradient
               ? Color.lerp(styleConfig.gradientColors.first,
@@ -642,7 +645,7 @@ class WaveformPainter extends CustomPainter {
                   styleConfig.gradientColors.last, rowFrac)!
               : config.playedColor;
         } else {
-          dotColor = config.idleColor.withOpacity(0.55);
+          dotColor = config.idleColor.withValues(alpha: 0.55);
         }
 
         final paint = styleConfig.dotFilled
@@ -690,7 +693,7 @@ class WaveformPainter extends CustomPainter {
         canvas.drawRRect(
             rrect,
             Paint()
-              ..color = baseColor.withOpacity(glowOpacity)
+              ..color = baseColor.withValues(alpha: glowOpacity)
               ..maskFilter = MaskFilter.blur(BlurStyle.normal, blurSigma));
       }
 
@@ -707,7 +710,7 @@ class WaveformPainter extends CustomPainter {
                 height: barH * 0.85),
             Radius.circular(config.barBorderRadius),
           ),
-          Paint()..color = Colors.white.withOpacity(0.55 * amp),
+          Paint()..color = Colors.white.withValues(alpha: 0.55 * amp),
         );
       }
     }
@@ -739,8 +742,8 @@ class WaveformPainter extends CustomPainter {
       final layerColor = styleConfig.useGradient
           ? Color.lerp(styleConfig.gradientColors.first,
                   styleConfig.gradientColors.last, t)!
-              .withOpacity(opacity)
-          : _shiftHue(baseColor, hueShift).withOpacity(opacity);
+              .withValues(alpha: opacity)
+          : _shiftHue(baseColor, hueShift).withValues(alpha: opacity);
 
       final path = _buildSmoothedPath(samples, size, scale, yShift);
 
@@ -748,7 +751,7 @@ class WaveformPainter extends CustomPainter {
       canvas.drawPath(
           path,
           Paint()
-            ..color = layerColor.withOpacity(opacity * 1.5)
+            ..color = layerColor.withValues(alpha: opacity * 1.5)
             ..style = PaintingStyle.stroke
             ..strokeWidth = 1.0);
     }
@@ -814,7 +817,7 @@ class WaveformPainter extends CustomPainter {
 
         Color cellColor;
         if (!isLit) {
-          cellColor = config.idleColor.withOpacity(0.10);
+          cellColor = config.idleColor.withValues(alpha: 0.10);
         } else if (isRecording) {
           // Recording: green → yellow → red (bottom to top)
           cellColor = Color.lerp(
@@ -828,7 +831,7 @@ class WaveformPainter extends CustomPainter {
                   styleConfig.gradientColors.last, rowFrac)!
               : config.playedColor;
         } else {
-          cellColor = config.idleColor.withOpacity(0.5);
+          cellColor = config.idleColor.withValues(alpha: 0.5);
         }
 
         canvas.drawRect(
@@ -839,7 +842,7 @@ class WaveformPainter extends CustomPainter {
         if (isLit) {
           canvas.drawRect(
             Rect.fromLTWH(cx + 0.5, cy + 0.5, config.barWidth * 0.4, 1.5),
-            Paint()..color = Colors.white.withOpacity(0.35),
+            Paint()..color = Colors.white.withValues(alpha: 0.35),
           );
         }
       }
@@ -925,7 +928,7 @@ class WaveformPainter extends CustomPainter {
             Offset(x, size.height / 2),
             6,
             Paint()
-              ..color = Colors.white.withOpacity(0.8)
+              ..color = Colors.white.withValues(alpha: 0.8)
               ..style = PaintingStyle.stroke
               ..strokeWidth = 1.5);
     }
@@ -956,7 +959,7 @@ class WaveformPainter extends CustomPainter {
     return LinearGradient(
       begin: Alignment.topCenter,
       end: Alignment.bottomCenter,
-      colors: colors.map((c) => c.withOpacity(opacity)).toList(),
+      colors: colors.map((c) => c.withValues(alpha: opacity)).toList(),
     ).createShader(Rect.fromLTWH(0, 0, size.width, size.height));
   }
 
