@@ -129,7 +129,7 @@ class AudioWaveformPlugin : FlutterPlugin, MethodCallHandler {
             "cancelRecording" -> {
                 try {
                     mediaRecorder?.stop()
-                } catch (_) {}
+                } catch (_: Exception) {}
                 mediaRecorder?.release()
                 mediaRecorder = null
                 currentFilePath?.let { File(it).delete() }
@@ -148,7 +148,7 @@ class AudioWaveformPlugin : FlutterPlugin, MethodCallHandler {
                     val raw = recorder.maxAmplitude
                     val normalised = raw / 32767.0
                     result.success(normalised)
-                } catch (_) {
+                } catch (_: Exception) {
                     result.success(0.0)
                 }
             }
@@ -183,7 +183,7 @@ class AudioWaveformPlugin : FlutterPlugin, MethodCallHandler {
                     mediaPlayer?.stop()
                     mediaPlayer?.prepare() // reset to beginning
                     result.success(null)
-                } catch (_) { result.success(null) }
+                } catch (_: Exception) { result.success(null) }
             }
 
             "seekTo" -> {

@@ -1,3 +1,7 @@
+## 0.1.3
+
+- Fixed Kotlin compilation errors on Android (added explicit types to `catch` blocks).
+
 ## 0.1.2
 
 - Fixed missing Android native files (`build.gradle`, `AndroidManifest.xml`).

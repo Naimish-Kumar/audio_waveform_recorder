@@ -2,7 +2,7 @@ name: audio_waveform_recorder
 description: >
   Record audio with a real-time animated waveform visualiser. Playback with
   waveform scrubbing. Export to M4A/AAC/WAV/MP4. Pure Dart UI + native channels.
-version: 0.1.2
+version: 0.1.3
 homepage: https://github.com/Naimish-Kumar/audio_waveform_recorder
 repository: https://github.com/Naimish-Kumar/audio_waveform_recorder
 issue_tracker: https://github.com/Naimish-Kumar/audio_waveform_recorder/issues
