@@ -4,7 +4,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'audio_waveform_recorder'
-  s.version          = '0.1.1'
+  s.version          = '0.1.2'
   s.summary          = 'Record audio with a real-time animated waveform visualiser.'
   s.description      = <<-DESC
 Record audio with a real-time animated waveform visualiser. Playback with waveform scrubbing. Export to M4A/AAC/WAV/MP4. Pure Dart UI + native channels.

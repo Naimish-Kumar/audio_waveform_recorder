@@ -1,3 +1,10 @@
+## 0.1.2
+
+- Fixed missing Android native files (`build.gradle`, `AndroidManifest.xml`).
+- Fixed missing iOS native file (`audio_waveform_recorder.podspec`).
+- Resolved Gradle `NullPointerException` during project evaluation.
+- Improved compatibility with modern Android Gradle Plugin (AGP) versions.
+
 ## 0.1.1
 
 * Fix: `withOpacity` deprecated warnings resolved by switching to `withValues(alpha:)`
